@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import com.google.gson.Gson;
+import org.json.*;
 
 import edu.gatech.Assassins.model.Request;
 import edu.gatech.Assassins.model.User;
@@ -67,14 +67,24 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				} 
 		        
-				Gson gson = new Gson();
 				
-				Request request = new Request(Request.register, new User(name, pic));
-				out.print(gson.toJson(request));
+				JSONObject obj = new JSONObject();
 				try {
-					if (in.readLine().equals(Request.ack))
+					obj.put("name", name);
+					obj.put("pic", pic);
+					out.print(obj);
+					String json = in.readLine();
+					
+					obj = new JSONObject(json);
+					if (obj.getString("type").equals(Request.ack))
 						startActivity(new Intent(v.getContext(), PreGameActivity.class));
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NullPointerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
