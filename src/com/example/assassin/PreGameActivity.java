@@ -1,5 +1,15 @@
 package com.example.assassin;
 
-public class PreGameActivity {
+import android.os.Bundle;
+import android.app.Activity;
+
+public class PreGameActivity extends Activity {
+	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.pre_game);    }
+
 
 }
