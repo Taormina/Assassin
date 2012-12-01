@@ -1,0 +1,33 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   AndroidManifest.xml
+#	modified:   ic_launcher-web.png
+#	modified:   project.properties
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	BuildConfig.class
+#	BuildConfig.java
+#	MainActivity.class
+#	MainActivity.java
+#	R$attr.class
+#	R$drawable.class
+#	R$id.class
+#	R$layout.class
+#	R$menu.class
+#	R$string.class
+#	R$style.class
+#	R.class
+#	R.java
+#	activity_main.xml
+#	android-support-v4.jar
+#	ic_action_search.png
+#	ic_launcher.png
+#	strings.xml
+#	styles.xml
