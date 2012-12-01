@@ -7,5 +7,14 @@
     <string name="register_button">Register</string>
     <string name="player_name">Your Name</string>
     <string name="change_pic">Choose Picture</string>
+    <string name="pregame_1">The game has not yet started.</string>
+    <string name="pregame_2">Players connected: </string>
+    <string name="target_label">Current Target:</string>
+    <string name="remaining_label">Players remaining:</string>
+    <string name="dead_button">I have been KILLED</string>
+    <string name="lost_label">You have lost.  Thanks for playing.</string>
+    <string name="ranking_1">You received</string>
+    <string name="ranking_3">place.</string>
+	<string name="win_label">YOU WIN!!!</string>
 
 </resources>

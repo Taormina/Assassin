@@ -6,24 +6,41 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
-	
-	<uses-permission android:name="android.permission.CAMERA" />
-	<uses-feature android:name="android.hardware.camera" />
-	<uses-feature android:name="android.hardware.camera.autofocus" />
     
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:name=".MainActivity"  
+            android:screenOrientation="portrait" 
+        	android:configChanges="orientation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PreGameActivity"
+            android:screenOrientation="portrait" 
+        	android:configChanges="orientation" >
+ 		</activity>
+ 		<activity
+            android:name=".ActiveGameActivity"
+            android:screenOrientation="portrait" 
+        	android:configChanges="orientation" >
+ 		</activity>
+ 		<activity
+            android:name=".LossGameActivity"
+            android:screenOrientation="portrait" 
+        	android:configChanges="orientation" >
+ 		</activity>
+ 		<activity
+            android:name=".WinGameActivity"
+            android:screenOrientation="portrait" 
+        	android:configChanges="orientation" >
+ 		</activity>
     </application>
 
 </manifest>

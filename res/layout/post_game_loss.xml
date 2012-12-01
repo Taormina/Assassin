@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lost_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lost_label" />
+    
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+	    <TextView
+	        android:id="@+id/remaining_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/remaining_label" />
+	
+	    <TextView
+	        android:id="@+id/players_remaining"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="#" />
+	    
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+	    
+	    <TextView
+	        android:id="@+id/ranking_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/ranking_1" />
+	    
+	    <TextView
+	        android:id="@+id/ranking_2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="2nd" />
+	    
+	    <TextView
+	        android:id="@+id/ranking_3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/ranking_3" />
+	    
+	</LinearLayout>
+	
+</LinearLayout>
