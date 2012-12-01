@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import com.google.gson.Gson;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +22,6 @@ public class ActiveGameActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.active_game);    
-        
-        
-        
         
         Button killedButton = (Button) findViewById(R.id.dead_button);
         killedButton.setOnClickListener(new View.OnClickListener() {

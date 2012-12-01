@@ -14,6 +14,7 @@ import edu.gatech.Assassins.model.Request;
 import edu.gatech.Assassins.model.User;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
@@ -45,49 +46,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
-		        EditText et = (EditText) findViewById(R.id.name);
-				String name = et.getText().toString();
-				String pic = ImageToString((ImageView) findViewById(R.id.user_image));
-				
-				Socket sock = null;
-		        PrintWriter out = null;
-		        BufferedReader in = null;  
-		        
-		        try {
-					sock = new Socket("10.150.22.225", 1337);
-					out = new PrintWriter(sock.getOutputStream(), true);
-		            in = new BufferedReader(new InputStreamReader(
-		                                        sock.getInputStream()));
-		        } catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-		        
-				
-				JSONObject obj = new JSONObject();
-				try {
-					obj.put("name", name);
-					obj.put("pic", pic);
-					out.print(obj);
-					String json = in.readLine();
-					
-					obj = new JSONObject(json);
-					if (obj.getString("type").equals(Request.ack))
-						startActivity(new Intent(v.getContext(), PreGameActivity.class));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (NullPointerException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				new TestTask().execute();
 			}
 		} );
         
@@ -133,5 +92,56 @@ public class MainActivity extends Activity {
 		bm.compress(CompressFormat.PNG, 1, baos);
 		return baos.toString();
 	}
-
+    
+    public class TestTask extends AsyncTask<Void, Void, Void> {
+    	@Override
+    	protected Void doInBackground(Void... params) {
+			
+	        EditText et = (EditText) findViewById(R.id.name);
+			String name = et.getText().toString();
+			String pic = ImageToString((ImageView) findViewById(R.id.user_image));
+			
+			Socket sock = null;
+	        PrintWriter out = null;
+	        BufferedReader in = null;  
+	        
+	        try {
+				sock = new Socket("128.61.51.169", 1337);
+				out = new PrintWriter(sock.getOutputStream(), true);
+	            in = new BufferedReader(new InputStreamReader(
+	                                        sock.getInputStream()));
+	        } catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	        
+			
+			JSONObject obj = new JSONObject();
+			try {
+				obj.put("name", name);
+				obj.put("pic", pic);
+				out.print(obj);
+				String json = in.readLine();
+				
+				obj = new JSONObject(json);
+				if (obj.getString("type").equalsIgnoreCase(Request.ack))
+					startActivity(new Intent(findViewById(R.id.register).getContext(), PreGameActivity.class));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+    		return null;
+    	}
+    }
+    
 }
