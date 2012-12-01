@@ -1,6 +1,17 @@
 package com.example.assassin;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import com.google.gson.Gson;
+
+import edu.gatech.Assassins.model.Request;
+import edu.gatech.Assassins.model.User;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +23,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,19 +39,45 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         Button registerButton, changePicButton;
- 
+        
         registerButton = (Button) findViewById(R.id.register);
         registerButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				/*
-		        EditText et = (EditText) findViewById(R.id.name);
-				Editable name = et.getText();
 				
-				String strBitmap = ImageToString((ImageView) findViewById(R.id.user_image));
-*/
-				startActivity(new Intent(v.getContext(), PreGameActivity.class));
+		        EditText et = (EditText) findViewById(R.id.name);
+				String name = et.getText().toString();
+				String pic = ImageToString((ImageView) findViewById(R.id.user_image));
+				
+				Socket sock = null;
+		        PrintWriter out = null;
+		        BufferedReader in = null;  
+		        
+		        try {
+					sock = new Socket("10.150.22.225", 1337);
+					out = new PrintWriter(sock.getOutputStream(), true);
+		            in = new BufferedReader(new InputStreamReader(
+		                                        sock.getInputStream()));
+		        } catch (UnknownHostException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		        
+				Gson gson = new Gson();
+				
+				Request request = new Request(Request.register, new User(name, pic));
+				out.print(gson.toJson(request));
+				try {
+					if (in.readLine().equals(Request.ack))
+						startActivity(new Intent(v.getContext(), PreGameActivity.class));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		} );
         
